@@ -1,1 +1,1 @@
-k3d cluster delete mycluster
+sudo k3d cluster delete mycluster
