@@ -5,7 +5,7 @@ kubectl create namespace dev
 
 kubectl create -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-(for i in {1..180}; do sleep 1;echo -n a; done) | pv -s 180 > /dev/null
+kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
 
 #nohup sudo kubectl -n argocd port-forward --address 0.0.0.0 svc/argocd-server 8080:80 &
 kubectl apply -f ../configs/
