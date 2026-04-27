@@ -1,17 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
 metadata:
-  name: argocd-ingress
+  name: argocd-server-tcp
   namespace: argocd
 spec:
-  ingressClassName: traefik
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              number: 8080
+  entryPoints:
+    - websecure
+  routes:
+  - match: HostSNI(`*`) # This catches all traffic on the websecure port
+    services:
+    - name: argocd-server
+      port: 443
+  tls:
+    passthrough: true
