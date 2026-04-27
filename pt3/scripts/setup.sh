@@ -7,8 +7,9 @@ kubectl create -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/s
 
 sleep 180
 
+kubectl create -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 nohup sudo kubectl -n argocd port-forward --address 0.0.0.0 svc/argocd-server 8080:80 &
-
+kubectl apply -f ../configs/*.yaml
 
 sleep 5
 
