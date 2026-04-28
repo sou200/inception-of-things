@@ -11,6 +11,11 @@ kubectl apply -f ../configs/
 
 sleep 5
 
+kubectl patch deployment argocd-repo-server -n argocd \
+  --type='json' \
+  -p='[{"op":"add","path":"/spec/template/spec/containers/0/env/-","value":{"name":"ARGOCD_GPG_ENABLED","value":"false"}}]'
+#kubectl rollout restart deployment -n argocd
+
 password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
 echo "Argo CD initial admin password: $password"
