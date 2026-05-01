@@ -1,0 +1,85 @@
+global:
+  edition: ce
+
+  installCertmanager: false
+
+  hosts:
+    domain: local
+    externalIP: 127.0.0.1
+
+  ingress:
+    configureCertmanager: false
+    class: "traefik"
+
+  minio:
+    enabled: false
+
+  kas:
+    enabled: false
+
+  object_store:
+    enabled: false
+  
+  appConfig:
+    artifacts:
+      enabled: false
+    lfs:
+      enabled: false
+    uploads:
+      enabled: false
+    packages:
+      enabled: false
+
+prometheus:
+  install: false
+
+grafana:
+  enabled: false
+
+gitlab-runner:
+  install: false
+
+registry:
+  enabled: false
+
+nginx-ingress:
+  enabled: false
+
+# Core GitLab components tuned down
+gitlab:
+  webservice:
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      requests:
+        memory: 400Mi
+        cpu: 200m
+
+  sidekiq:
+    resources:
+      requests:
+        memory: 200Mi
+        cpu: 100m
+
+  toolbox:
+    enabled: false
+
+# Keep internal DB but small
+postgresql:
+  primary:
+    persistence:
+      enabled: false
+    resources:
+      requests:
+        memory: 300Mi
+        cpu: 100m
+
+# Keep Redis but tiny
+redis:
+  master:
+    persistence:
+      enabled: false
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 50m
