@@ -4,8 +4,8 @@ global:
   installCertmanager: false
 
   hosts:
-    domain: local
-    externalIP: 127.0.0.1
+    domain: 207.154.233.56.nip.io
+    #externalIP: 127.0.0.1
 
   ingress:
     configureCertmanager: false
