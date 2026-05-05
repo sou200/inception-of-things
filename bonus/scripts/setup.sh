@@ -1,5 +1,5 @@
 k3d cluster delete mycluster
-k3d cluster create mycluster --servers 1 --agents 1 -p "80:80@loadbalancer" -p "443:443@loadbalancer" -p "8888:30001@loadbalancer"
+k3d cluster create mycluster --servers 1 --agents 1 --k3s-arg "--disable=traefik@server:*" -p "80:80@loadbalancer" -p "443:443@loadbalancer" -p "8888:30001@loadbalancer"
 
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update

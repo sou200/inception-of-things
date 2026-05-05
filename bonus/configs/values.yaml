@@ -4,12 +4,12 @@ global:
   installCertmanager: false
 
   hosts:
-    domain: 207.154.233.56.nip.io
+    domain: local
     #externalIP: 127.0.0.1
 
   ingress:
     configureCertmanager: false
-    class: "traefik"
+    class: "nginx"
 
   minio:
     enabled: false
