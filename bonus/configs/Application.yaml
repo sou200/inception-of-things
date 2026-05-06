@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/sou200/IaC-IoT.git'
+    repoURL: 'https://gitlab.46.101.115.185.nip.io/root/test-repo.git'
     path: .
     targetRevision: main
   destination:

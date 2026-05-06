@@ -47,8 +47,8 @@ postgresql:
       enabled: false
     resources:
       requests:
-        memory: 300Mi
-        cpu: 100m
+        memory: 400Mi
+        cpu: 200m
 
 redis:
   master:
@@ -56,8 +56,8 @@ redis:
       enabled: false
     resources:
       requests:
-        memory: 100Mi
-        cpu: 50m
+        memory: 200Mi
+        cpu: 100m
 
 minio:
   master:
@@ -65,5 +65,5 @@ minio:
       enabled: false
     resources:
       requests:
-        memory: 100Mi
-        cpu: 50m
+        memory: 200Mi
+        cpu: 100m
