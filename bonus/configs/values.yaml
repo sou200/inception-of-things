@@ -2,7 +2,7 @@ global:
   edition: ce
   installCertmanager: false
   hosts:
-    domain: 164.90.163.187.nip.io
+    domain: 152.42.132.123.nip.io
   ingress:
     configureCertmanager: false
     class: "nginx"

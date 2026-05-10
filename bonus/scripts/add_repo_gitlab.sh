@@ -26,31 +26,6 @@ GITLAB_HOST=$(
     -o jsonpath='{.spec.rules[0].host}'
 )
 
-API_URL="https://${GITLAB_HOST}/api/v4"
-REPO_URL="https://${GITLAB_USER}:${TOKEN:-}@${GITLAB_HOST}/${GITLAB_USER}/${REPO_NAME}.git"
-
-echo "Ensuring project exists..."
-
-PROJECT_STATUS=$(curl -sk \
-    --header "PRIVATE-TOKEN: $TOKEN" \
-    --output /dev/null \
-    --write-out "%{http_code}" \
-    "${API_URL}/projects/${GITLAB_USER}%2F${REPO_NAME}"
-)
-
-if [[ "$PROJECT_STATUS" == "404" ]]; then
-    curl -sk --request POST \
-        --header "PRIVATE-TOKEN: $TOKEN" \
-        --data "name=${REPO_NAME}" \
-        --data "visibility=public" \
-        "${API_URL}/projects"
-
-    echo
-    echo "Project created."
-else
-    echo "Project already exists."
-fi
-
 if [[ ! -f "$TOKEN_FILE" ]]; then
     echo "Creating GitLab access token..."
 
@@ -72,6 +47,34 @@ if [[ ! -f "$TOKEN_FILE" ]]; then
 fi
 
 TOKEN=$(tr -d '\r\n' < "$TOKEN_FILE")
+
+API_URL="https://${GITLAB_HOST}/api/v4"
+REPO_URL="https://${GITLAB_USER}:${TOKEN:-}@${GITLAB_HOST}/${GITLAB_USER}/${REPO_NAME}.git"
+
+echo "Ensuring project exists..."
+
+PROJECT_STATUS=$(curl -sk \
+    --header "PRIVATE-TOKEN: $TOKEN" \
+    --output /dev/null \
+    --write-out "%{http_code}" \
+    "${API_URL}/projects/${GITLAB_USER}%2F${REPO_NAME}"
+)
+
+echo "$PROJECT_STATUS"
+
+if [[ "$PROJECT_STATUS" == "404" ]]; then
+    curl -sk --request POST \
+        --header "PRIVATE-TOKEN: $TOKEN" \
+        --header "Content-Type: application/json" \
+	--data "{\"name\": \"${REPO_NAME}\", \"visibility\": \"public\"}" \
+        "${API_URL}/projects"
+
+    echo
+    echo "Project created."
+else
+    echo "Project already exists."
+fi
+
 REPO_URL="https://${GITLAB_USER}:${TOKEN:-}@${GITLAB_HOST}/${GITLAB_USER}/${REPO_NAME}.git"
 
 echo "Preparing local repository..."
