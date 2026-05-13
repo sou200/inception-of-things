@@ -3,12 +3,12 @@ k3d cluster create mycluster --servers 1 --agents 1 --k3s-arg "--disable=traefik
 kubectl create namespace argocd
 kubectl create namespace dev
 
-sleep 5
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
 kubectl apply -n argocd --server-side -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
-kubectl apply -f ../configs/
+
+cd /vagrant/configs
+kubectl apply -f Application.yaml -f ingress.yaml
 
 password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-
 echo "Argo CD initial admin password: $password"

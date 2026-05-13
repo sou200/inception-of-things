@@ -1,13 +1,28 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+WORKER_T = {
+  machine_name: "worker",
+  hostname: "worker",
+  ip: "192.168.56.10",
+  box: "debian/bookworm64"
+}
+
+MASTER_T = {
+  machine_name: "master",
+  hostname: "master",
+  ip: "192.168.56.110",
+  box: "debian/bookworm64"
+}
+
+
 Vagrant.configure("2") do |config|
   config.vm.define "master" do |master|
-    master.vm.box = "debian/bookworm64"
-    master.vm.hostname = "Server"
-    master.vm.network "private_network", ip: "192.168.56.110"
+    master.vm.box = MASTER_T[:box]
+    master.vm.hostname = MASTER_T[:hostname]
+    master.vm.network "private_network", ip: MASTER_T[:ip]
     master.vm.provider "virtualbox" do |vb|
-      vb.name = "serhouni"
+      vb.name = MASTER_T[:machine_name]
       vb.gui = false
       vb.memory = "2048"
       vb.cpus = 2
@@ -16,11 +31,11 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "worker" do |worker|
-    worker.vm.box = "debian/bookworm64"
-    worker.vm.hostname = "ServerWorker"
-    worker.vm.network "private_network", ip: "192.168.56.111"
+    worker.vm.box = WORKER_T[:box]
+    worker.vm.hostname = WORKER_T[:hostname]
+    worker.vm.network "private_network", ip: WORKER_T[:ip]
     worker.vm.provider "virtualbox" do |vb|
-      vb.name = "worker"
+      vb.name = WORKER_T[:machine_name]
       vb.gui = false
       vb.memory = "1024"
       vb.cpus = 1

@@ -1,0 +1,4 @@
+server: "https://192.168.56.110:6443"
+token: "e37622f97b328ea457752e577953065a44ba6180"
+node-name: "worker"
+node-ip: "192.168.56.111"
