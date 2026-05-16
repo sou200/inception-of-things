@@ -5,4 +5,4 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-usermod -aG docker dragon
+usermod -aG docker vagrant
