@@ -9,16 +9,17 @@ global:
   kas:
     enabled: false
 
-nginx-ingress:
-  enabled: false
-prometheus:
-  install: false
 grafana:
   enabled: false
-gitlab-runner:
-  install: false
+nginx-ingress:
+  enabled: false
 registry:
   enabled: false
+
+prometheus:
+  install: false
+gitlab-runner:
+  install: false
 
 gitlab:
   webservice:
