@@ -11,13 +11,16 @@ global:
 
 grafana:
   enabled: false
+
 nginx-ingress:
   enabled: false
+
 registry:
   enabled: false
 
 prometheus:
   install: false
+
 gitlab-runner:
   install: false
 
