@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://gitlab.152.42.132.123.nip.io/root/test-repo.git'
+    repoURL: 'https://gitlab.local/root/test-repo.git'
     path: .
     targetRevision: main
   destination:

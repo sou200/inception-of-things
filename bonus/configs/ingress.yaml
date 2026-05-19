@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: argocd.152.42.132.123.nip.io
+    - host: argocd.local
       http:
         paths:
           - path: /
