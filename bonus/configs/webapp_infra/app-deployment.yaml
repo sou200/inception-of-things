@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
-  labels:
-    app: app
 spec:
   replicas: 1
   selector:
@@ -16,6 +14,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: sophon2048/iot_app2:latest
+        image: sophon2048/serhouni42:v2
         ports:
         - containerPort: 80
