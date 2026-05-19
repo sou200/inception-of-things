@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'http://gitlab-webservice-default.gitlab.svc.cluster.local:8181/root/test-repo.git'
+    repoURL: 'http://gitlab-webservice-default.gitlab.svc.cluster.local:8181/root/idouni.git'
     path: .
     targetRevision: main
   destination:

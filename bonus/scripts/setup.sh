@@ -23,7 +23,7 @@ kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -
 kubectl wait --for=condition=available --timeout=600s deployment/gitlab-webservice-default -n gitlab
 
 cd ../configs
-kubectl apply -f secret.yaml -f Application.yaml -f ingress.yaml
+kubectl apply -f Application.yaml -f ingress.yaml
 
 argocd_password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 gitlab_password=$(kubectl -n gitlab get secret gitlab-gitlab-initial-root-password -o jsonpath="{.data.password}" | base64 -d)

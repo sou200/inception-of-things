@@ -7,7 +7,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main
 kubectl apply -n argocd --server-side -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
 
-cd /vagrant/configs
+cd ../configs
 kubectl apply -f Application.yaml -f ingress.yaml
 
 password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
